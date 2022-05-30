@@ -77,9 +77,11 @@ for NODE in $NODES
 do
     NAME=`echo $NODE | cut -d ':' -f1`
     HOST=`echo $NODE | cut -d ':' -f2`
+    PORT=`echo $NODE | cut -d ':' -f3`
     grep -q "${HOST}$" /etc/munin/munin.conf || cat << EOF >> /etc/munin/munin.conf
 [$NAME]
     address $HOST
+    port $PORT
     use_node_name yes
 
 EOF
